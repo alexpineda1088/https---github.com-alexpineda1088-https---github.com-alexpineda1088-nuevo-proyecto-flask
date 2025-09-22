@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Buscar Producto</h1>
+<form method="post">
+    <label>Nombre:</label><br><input type="text" name="nombre"><br><br>
+    <input type="submit" value="Buscar">
+</form>
+
+{% if resultados %}
+    <h2>Resultados:</h2>
+    <table>
+        <tr><th>ID</th><th>Nombre</th><th>Cantidad</th><th>Precio</th></tr>
+        {% for r in resultados %}
+        <tr>
+            <td>{{ r.ID }}</td><td>{{ r.Nombre }}</td><td>{{ r.Cantidad }}</td><td>{{ r.Precio }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+{% endblock %}

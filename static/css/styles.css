@@ -1,0 +1,163 @@
+/* =============================
+   Estilos Dashboard Supermercado
+============================= */
+
+/* Body */
+body {
+    background-color: #f5f6fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2f3640;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header y Navbar */
+header {
+    background-color: #2a9d8f;
+    color: white;
+    padding: 15px 30px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 10px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #21867a;
+    border-radius: 5px;
+}
+
+/* Footer */
+footer {
+    background-color: #2a9d8f;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 30px;
+    box-shadow: 0 -3px 6px rgba(0,0,0,0.1);
+}
+
+/* Main */
+main {
+    padding: 20px 30px;
+}
+
+/* H1 y H2 */
+h1, h2 {
+    color: #264653;
+    margin-bottom: 20px;
+}
+
+/* Botones generales */
+button {
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+/* DataTables personalizados */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    background-color: #2a9d8f;
+    color: white !important;
+    border-radius: 5px;
+    margin: 2px;
+    padding: 5px 10px;
+    border: none;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background-color: #21867a !important;
+    color: white !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+table.dataTable {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table.dataTable thead th {
+    background-color: #2a9d8f;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+table.dataTable tbody tr:nth-child(odd) {
+    background-color: #f0f4f4;
+}
+
+table.dataTable tbody tr:hover {
+    background-color: #d9f0ef;
+}
+
+/* Botones de exportación */
+.dt-button {
+    background-color: #264653 !important;
+    color: white !important;
+    border-radius: 5px !important;
+    padding: 5px 12px !important;
+    margin-right: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+.dt-button:hover {
+    background-color: #21867a !important;
+}
+
+/* Mensajes flash */
+.flash {
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.flash.success {
+    background-color: #2a9d8f;
+    color: white;
+}
+
+.flash.danger {
+    background-color: #e74c3c;
+    color: white;
+}

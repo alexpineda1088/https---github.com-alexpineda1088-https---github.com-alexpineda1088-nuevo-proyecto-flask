@@ -1,0 +1,174 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <h1 class="text-center mb-4">📦 Inventario del Supermercado</h1>
+    <p class="text-center text-muted mb-5">Visualiza tus productos desde diferentes fuentes y exporta la información fácilmente.</p>
+
+    <!-- Pestañas -->
+    <ul class="nav nav-tabs justify-content-center mb-3" id="inventarioTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="db-tab" data-bs-toggle="tab" data-bs-target="#db" type="button" role="tab">Base de Datos</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="txt-tab" data-bs-toggle="tab" data-bs-target="#txt" type="button" role="tab">Archivo TXT</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="json-tab" data-bs-toggle="tab" data-bs-target="#json" type="button" role="tab">Archivo JSON</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="csv-tab" data-bs-toggle="tab" data-bs-target="#csv" type="button" role="tab">Archivo CSV</button>
+        </li>
+    </ul>
+
+    <!-- Contenido de pestañas -->
+    <div class="tab-content" id="inventarioTabsContent">
+
+        <!-- Base de Datos -->
+        <div class="tab-pane fade show active" id="db" role="tabpanel">
+            <div class="d-flex justify-content-end mb-2">
+                <button class="btn btn-success" onclick="exportTableToCSV('dbTable', 'inventario_db_{{current_date}}.csv')">💾 Exportar CSV</button>
+            </div>
+            <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                <table class="table table-striped table-hover table-bordered" id="dbTable">
+                    <thead class="table-success">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Precio ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos_db %}
+                        <tr>
+                            <td>{{ producto[0] }}</td>
+                            <td>{{ producto[1] }}</td>
+                            <td>{{ producto[2] }}</td>
+                            <td>{{ producto[3] }}</td>
+                        </tr>
+                        {% else %}
+                        <tr><td colspan="4" class="text-center">No hay productos registrados</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Archivo TXT -->
+        <div class="tab-pane fade" id="txt" role="tabpanel">
+            <div class="d-flex justify-content-end mb-2">
+                <button class="btn btn-info" onclick="exportTableToCSV('txtTable', 'inventario_txt_{{current_date}}.csv')">💾 Exportar CSV</button>
+            </div>
+            <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                <table class="table table-striped table-hover table-bordered" id="txtTable">
+                    <thead class="table-info">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Precio ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos_txt %}
+                        <tr>
+                            <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.cantidad }}</td>
+                            <td>{{ producto.precio }}</td>
+                        </tr>
+                        {% else %}
+                        <tr><td colspan="3" class="text-center">No hay productos registrados</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Archivo JSON -->
+        <div class="tab-pane fade" id="json" role="tabpanel">
+            <div class="d-flex justify-content-end mb-2">
+                <button class="btn btn-warning" onclick="exportTableToCSV('jsonTable', 'inventario_json_{{current_date}}.csv')">💾 Exportar CSV</button>
+            </div>
+            <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                <table class="table table-striped table-hover table-bordered" id="jsonTable">
+                    <thead class="table-warning">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Precio ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos_json %}
+                        <tr>
+                            <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.cantidad }}</td>
+                            <td>{{ producto.precio }}</td>
+                        </tr>
+                        {% else %}
+                        <tr><td colspan="3" class="text-center">No hay productos registrados</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Archivo CSV -->
+        <div class="tab-pane fade" id="csv" role="tabpanel">
+            <div class="d-flex justify-content-end mb-2">
+                <button class="btn btn-secondary" onclick="exportTableToCSV('csvTable', 'inventario_csv_{{current_date}}.csv')">💾 Exportar CSV</button>
+            </div>
+            <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                <table class="table table-striped table-hover table-bordered" id="csvTable">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Precio ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos_csv %}
+                        <tr>
+                            <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.cantidad }}</td>
+                            <td>{{ producto.precio }}</td>
+                        </tr>
+                        {% else %}
+                        <tr><td colspan="3" class="text-center">No hay productos registrados</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Exportación CSV -->
+<script>
+function downloadCSV(csv, filename) {
+    const csvFile = new Blob([csv], {type: "text/csv"});
+    const downloadLink = document.createElement("a");
+    downloadLink.download = filename;
+    downloadLink.href = window.URL.createObjectURL(csvFile);
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+}
+
+function exportTableToCSV(tableId, filename) {
+    const rows = document.querySelectorAll(`#${tableId} tr`);
+    let csv = [];
+    rows.forEach(row => {
+        const cols = row.querySelectorAll('th, td');
+        const rowData = Array.from(cols).map(col => `"${col.textContent}"`);
+        csv.push(rowData.join(","));
+    });
+    downloadCSV(csv.join("\n"), filename);
+}
+</script>
+
+{% endblock %}

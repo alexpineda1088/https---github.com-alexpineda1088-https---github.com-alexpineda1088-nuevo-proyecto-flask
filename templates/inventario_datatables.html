@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario Supermercado</title>
+
+    <!-- CSS de DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+
+    <!-- Estilo propio -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f6fa;
+            color: #2f3640;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2a9d8f;
+            color: white;
+            padding: 15px 30px;
+        }
+        header h1 { margin: 0; }
+        nav ul { list-style: none; display: flex; gap: 15px; padding: 0; }
+        nav ul li a {
+            color: white; text-decoration: none; padding: 5px 10px; border-radius: 5px;
+            transition: 0.3s;
+        }
+        nav ul li a:hover { background-color: #21867a; }
+
+        main { padding: 20px 30px; }
+
+        footer {
+            background-color: #2a9d8f; color: white;
+            text-align: center; padding: 15px 0; margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>📦 Inventario del Supermercado</h1>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Inicio</a></li>
+            <li><a href="{{ url_for('productos') }}">Productos</a></li>
+            <li><a href="{{ url_for('inventario') }}">Inventario</a></li>
+            <li><a href="{{ url_for('ver_ventas') }}">Ventas</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('agregar') }}">Agregar Producto</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h2>Base de Datos (SQLite)</h2>
+    <table id="dbTable" class="display nowrap" style="width:100%">
+        <thead>
+            <tr><th>ID</th><th>Nombre</th><th>Cantidad</th><th>Precio ($)</th></tr>
+        </thead>
+        <tbody>
+            {% for producto in productos_db %}
+            <tr>
+                <td>{{ producto[0] }}</td>
+                <td>{{ producto[1] }}</td>
+                <td>{{ producto[2] }}</td>
+                <td>{{ producto[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Archivo TXT</h2>
+    <table id="txtTable" class="display nowrap" style="width:100%">
+        <thead>
+            <tr><th>Nombre</th><th>Cantidad</th><th>Precio ($)</th></tr>
+        </thead>
+        <tbody>
+            {% for producto in productos_txt %}
+            <tr>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.cantidad }}</td>
+                <td>{{ producto.precio }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Archivo JSON</h2>
+    <table id="jsonTable" class="display nowrap" style="width:100%">
+        <thead>
+            <tr><th>Nombre</th><th>Cantidad</th><th>Precio ($)</th></tr>
+        </thead>
+        <tbody>
+            {% for producto in productos_json %}
+            <tr>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.cantidad }}</td>
+                <td>{{ producto.precio }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Archivo CSV</h2>
+    <table id="csvTable" class="display nowrap" style="width:100%">
+        <thead>
+            <tr><th>Nombre</th><th>Cantidad</th><th>Precio ($)</th></tr>
+        </thead>
+        <tbody>
+            {% for producto in productos_csv %}
+            <tr>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.cantidad }}</td>
+                <td>{{ producto.precio }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+
+<footer>
+    <p>© 2025 Supermercado. Todos los derechos reservados.</p>
+</footer>
+
+<!-- JS necesarios -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#dbTable, #txtTable, #jsonTable, #csvTable').DataTable({
+        responsive: true,
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'csvHtml5',
+            'excelHtml5',
+        ],
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
+        }
+    });
+});
+</script>
+
+</body>
+</html>

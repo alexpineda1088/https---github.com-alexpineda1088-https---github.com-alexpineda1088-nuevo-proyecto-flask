@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Actualizar Producto</h1>
+<form method="post">
+    <label>ID del producto:</label><br><input type="number" name="id"><br>
+    <label>Nueva cantidad:</label><br><input type="number" name="cantidad"><br>
+    <label>Nuevo precio:</label><br><input type="number" step="0.01" name="precio"><br><br>
+    <input type="submit" value="Actualizar">
+</form>
+{% endblock %}

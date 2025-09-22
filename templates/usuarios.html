@@ -1,0 +1,12 @@
+<h2>Usuarios</h2>
+<a href="{{ url_for('agregar_usuario') }}">Agregar Usuario</a>
+<table border="1">
+<tr><th>ID</th><th>Nombre</th><th>Email</th></tr>
+{% for u in usuarios %}
+<tr>
+<td>{{ u[0] }}</td>
+<td>{{ u[1] }}</td>
+<td>{{ u[2] }}</td>
+</tr>
+{% endfor %}
+</table>

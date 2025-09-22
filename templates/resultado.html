@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3">Resultado</h2>
+
+    {% if nombre %}
+    <div class="alert alert-success">
+        <strong>Producto agregado:</strong> {{ nombre }} |
+        <strong>Precio:</strong> ${{ precio }} |
+        <strong>Cantidad:</strong> {{ cantidad }}
+    </div>
+    {% endif %}
+
+    {% if productos %}
+    <h3 class="mt-4">Productos en SQLite</h3>
+    <table class="table table-bordered table-striped">
+        <thead class="table-primary">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio ($)</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in productos %}
+            <tr>
+                <td>{{ p[0] }}</td>
+                <td>{{ p[1] }}</td>
+                <td>{{ p[3] }}</td>
+                <td>{{ p[2] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    <a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">Volver al inicio</a>
+</div>
+{% endblock %}

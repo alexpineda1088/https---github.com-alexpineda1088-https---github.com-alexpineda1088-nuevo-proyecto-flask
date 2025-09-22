@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Inventario desde {{ fuente }}</h2>
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>Nombre</th>
+        <th>Precio ($)</th>
+        <th>Cantidad</th>
+    </tr>
+    {% for p in productos %}
+    <tr>
+        <td>{{ p.nombre if p.nombre else p["nombre"] }}</td>
+        <td>{{ p.precio if p.precio else p["precio"] }}</td>
+        <td>{{ p.cantidad if p.cantidad else p["cantidad"] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

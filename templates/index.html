@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center p-5 bg-light rounded shadow-sm">
+        <h1 class="mb-4">Bienvenido al Sistema de Ventas</h1>
+        <p class="mb-4 lead">Gestiona productos y consulta reportes de ventas fácilmente.</p>
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+            <a href="{{ url_for('agregar') }}" class="btn btn-warning btn-lg">Agregar Producto</a>
+            <a href="{{ url_for('productos') }}" class="btn btn-primary btn-lg">Productos</a>
+            <a href="{{ url_for('inventario') }}" class="btn btn-success btn-lg">Inventario</a>
+            <a href="{{ url_for('reporte') }}" class="btn btn-info btn-lg">Reporte de Ventas</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
