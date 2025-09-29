@@ -2,15 +2,24 @@
 
 {% block content %}
 <div class="container mt-5">
-    <div class="text-center p-5 bg-light rounded shadow-sm">
-        <h1 class="mb-4">Bienvenido al Sistema de Ventas</h1>
-        <p class="mb-4 lead">Gestiona productos y consulta reportes de ventas fácilmente.</p>
-        <div class="d-flex justify-content-center flex-wrap gap-3">
-            <a href="{{ url_for('agregar') }}" class="btn btn-warning btn-lg">Agregar Producto</a>
-            <a href="{{ url_for('productos') }}" class="btn btn-primary btn-lg">Productos</a>
-            <a href="{{ url_for('inventario') }}" class="btn btn-success btn-lg">Inventario</a>
-            <a href="{{ url_for('reporte') }}" class="btn btn-info btn-lg">Reporte de Ventas</a>
-        </div>
+  <section class="text-center p-5 bg-light rounded shadow-sm">
+    <h1 class="mb-4 display-5">Bienvenido al Sistema de Ventas</h1>
+    <p class="mb-4 lead">Gestiona productos, inventario y reportes de ventas de forma rápida y sencilla.</p>
+
+    <div class="d-flex justify-content-center flex-wrap gap-3">
+      <a href="{{ url_for('agregar') }}" class="btn btn-warning btn-lg" title="Agregar un nuevo producto">
+        <i class="fas fa-plus-circle me-2"></i>Agregar Producto
+      </a>
+      <a href="{{ url_for('productos') }}" class="btn btn-primary btn-lg" title="Ver lista de productos">
+        <i class="fas fa-boxes me-2"></i>Productos
+      </a>
+      <a href="{{ url_for('inventario') }}" class="btn btn-success btn-lg" title="Consultar inventario actual">
+        <i class="fas fa-warehouse me-2"></i>Inventario
+      </a>
+      <a href="{{ url_for('reporte') }}" class="btn btn-info btn-lg" title="Ver reporte de ventas">
+        <i class="fas fa-chart-line me-2"></i>Reporte de Ventas
+      </a>
     </div>
+  </section>
 </div>
 {% endblock %}

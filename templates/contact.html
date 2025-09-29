@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 600px;">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">Contacto</h2>
+            <p class="text-center">Si tienes alguna duda o sugerencia, puedes enviarnos un mensaje usando el formulario a continuación:</p>
+
+            <form method="post" action="#">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="mensaje" class="form-label">Mensaje</label>
+                    <textarea class="form-control" id="mensaje" name="mensaje" rows="4" required></textarea>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        <i class="fas fa-paper-plane me-2"></i>Enviar Mensaje
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-4 text-center">
+                <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Volver al inicio
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

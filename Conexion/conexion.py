@@ -1,16 +1,15 @@
+# Conexion/conexion.py
 import mysql.connector
-from mysql.connector import Error
 
 def get_connection():
     try:
         connection = mysql.connector.connect(
             host='localhost',
-            port=3307,  # tu puerto
             user='root',
-            password='tu_contraseña',  # pon la correcta
+            password='',  # Cambia si tienes contraseña
             database='desarrollo_web'
         )
         return connection
-    except Error as e:
-        print(f"Error al conectar a la base de datos: {e}")
+    except mysql.connector.Error as err:
+        print(f"Error de conexión: {err}")
         return None

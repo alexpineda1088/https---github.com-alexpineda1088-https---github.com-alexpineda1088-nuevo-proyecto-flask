@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 600px;">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">
+                {% if usuario %}Editar Usuario{% else %}Agregar Usuario{% endif %}
+            </h2>
+
+            <form method="post">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre"
+                           value="{{ usuario.nombre if usuario else '' }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="mail" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="mail" name="mail"
+                           value="{{ usuario.mail if usuario else '' }}" required>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        <i class="fas fa-save me-2"></i>Guardar
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-4 text-center">
+                <a href="{{ url_for('listar_usuarios') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Volver a la lista
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

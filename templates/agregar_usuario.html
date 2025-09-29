@@ -1,7 +1,44 @@
-<h2>Agregar Usuario</h2>
-<form method="post">
-Nombre: <input type="text" name="nombre" required><br>
-Email: <input type="email" name="mail" required><br>
-<button type="submit">Agregar</button>
-</form>
-<a href="{{ url_for('listar_usuarios') }}">Volver</a>
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 600px;">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">Agregar Usuario</h2>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <form method="post">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ request.form.nombre }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="mail" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="mail" name="mail" value="{{ request.form.mail }}" required>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-user-plus me-2"></i>Agregar Usuario
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-4 text-center">
+                <a href="{{ url_for('listar_usuarios') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Volver a la lista
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
