@@ -2,24 +2,34 @@
 
 {% block content %}
 <div class="container mt-5">
-  <section class="text-center p-5 bg-light rounded shadow-sm">
-    <h1 class="mb-4 display-5">Bienvenido al Sistema de Ventas</h1>
-    <p class="mb-4 lead">Gestiona productos, inventario y reportes de ventas de forma rápida y sencilla.</p>
+    <section class="text-center p-5 bg-light rounded shadow-sm">
 
-    <div class="d-flex justify-content-center flex-wrap gap-3">
-      <a href="{{ url_for('agregar') }}" class="btn btn-warning btn-lg" title="Agregar un nuevo producto">
-        <i class="fas fa-plus-circle me-2"></i>Agregar Producto
-      </a>
-      <a href="{{ url_for('productos') }}" class="btn btn-primary btn-lg" title="Ver lista de productos">
-        <i class="fas fa-boxes me-2"></i>Productos
-      </a>
-      <a href="{{ url_for('inventario') }}" class="btn btn-success btn-lg" title="Consultar inventario actual">
-        <i class="fas fa-warehouse me-2"></i>Inventario
-      </a>
-      <a href="{{ url_for('reporte') }}" class="btn btn-info btn-lg" title="Ver reporte de ventas">
-        <i class="fas fa-chart-line me-2"></i>Reporte de Ventas
-      </a>
-    </div>
-  </section>
+        <!-- Imagen del supermercado -->
+        <img src="{{ url_for('static', filename='img/supermercado.jpg') }}" 
+             alt="Supermercado" 
+             class="img-fluid mb-4" 
+             style="max-width: 400px; border-radius: 10px;">
+
+        <!-- Título y descripción -->
+        <h1 class="mb-4 display-5 fw-bold">Bienvenido al Sistema de Ventas</h1>
+        <p class="mb-4 lead">Gestiona productos, inventario y reportes de ventas de forma rápida y sencilla.</p>
+
+        <!-- Botones de navegación -->
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+            <a href="{{ url_for('agregar') or '#' }}" class="btn btn-warning btn-lg" title="Agregar un nuevo producto">
+                <i class="fas fa-plus-circle me-2"></i>Agregar Producto
+            </a>
+            <a href="{{ url_for('productos') or '#' }}" class="btn btn-primary btn-lg" title="Ver lista de productos">
+                <i class="fas fa-boxes me-2"></i>Productos
+            </a>
+            <a href="{{ url_for('inventario') or '#' }}" class="btn btn-success btn-lg" title="Consultar inventario actual">
+                <i class="fas fa-warehouse me-2"></i>Inventario
+            </a>
+            <a href="{{ url_for('reporte') or '#' }}" class="btn btn-info btn-lg" title="Ver reporte de ventas">
+                <i class="fas fa-chart-line me-2"></i>Reporte de Ventas
+            </a>
+        </div>
+
+    </section>
 </div>
 {% endblock %}
